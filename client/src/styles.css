@@ -1,0 +1,86 @@
+:root{
+  --bg:#0B0B0B;
+  --panel:#1A1A1A;
+  --accent:#FF7A00;
+  --accent-2:#FFA64D;
+  --white:#FFFFFF;
+  --muted:#9b9b9b;
+  --glass: rgba(255,255,255,0.03);
+  --shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+html,body,#root{height:100%;}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#060606);color:var(--white);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+.page{padding:20px}
+
+/* Header */
+.header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:linear-gradient(180deg,var(--panel),#111);border-radius:12px;box-shadow:var(--shadow)}
+
+.card{background:linear-gradient(180deg, #0F0F0F, var(--panel));padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+
+/* Auth */
+.auth-page{display:flex;align-items:center;justify-content:center;height:100vh}
+.auth-card{width:360px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:28px}
+.auth-card input{display:block;width:100%;padding:12px;margin:10px 0;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white);outline:none;transition:box-shadow .15s ease}
+.auth-card input:focus{box-shadow:0 6px 14px rgba(255,122,0,0.08);border-color:var(--accent)}
+
+.btn{padding:10px 16px;border-radius:10px;border:none;cursor:pointer;transition:transform .12s ease, box-shadow .12s ease}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 6px 22px rgba(255,122,0,0.12)}
+.btn.primary:hover{filter:brightness(.98)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+.btn.danger{background:#cc3b3b;color:#fff}
+
+.top-cards{display:flex;gap:14px;margin:18px 0}
+.top-cards .card.small{flex:1;padding:16px;border-radius:12px;background:linear-gradient(180deg,#0e0e0e, #151515);display:flex;flex-direction:column;gap:6px}
+.top-cards .label{color:var(--muted);font-size:13px}
+.top-cards .value{font-weight:700;font-size:18px}
+
+.sheet-section{margin-top:22px}
+
+.table-wrapper{overflow:auto;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:12px;border-radius:12px}
+table{width:100%;border-collapse:separate;border-spacing:0}
+thead th{position:sticky;top:0;background:linear-gradient(180deg,#0f0f0f, #121212);z-index:2;padding:12px 10px;text-align:left;color:var(--muted);font-size:13px}
+tbody tr{transition:background .12s ease}
+tbody tr:hover{background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02))}
+th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:middle}
+input,select{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--white);padding:8px;border-radius:8px}
+
+.sheet-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+.cta{position:fixed;right:20px;bottom:20px;background:linear-gradient(180deg,var(--panel),#0F0F0F);padding:18px;border-radius:14px;width:280px;box-shadow:var(--shadow)}
+.cta h4{margin:0 0 8px 0;font-size:15px}
+.cta-buttons{display:flex;gap:8px}
+
+.user{margin-right:12px}
+.muted{color:var(--muted);font-size:13px;margin-top:10px}
+
+/* Loader / skeleton */
+.loader{width:48px;height:48px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));display:inline-block;animation:spin 1.6s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* Responsive */
+@media (max-width:900px){
+  .top-cards{flex-direction:column}
+  .cta{position:static;margin-top:18px;width:auto}
+  .header{flex-direction:column;gap:12px}
+}
+
+/* Small helpers */
+.glass{background:var(--glass);border-radius:10px;padding:8px}
+.small{font-size:13px;color:var(--muted)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.7));display:flex;align-items:center;justify-content:center;padding:20px;z-index:40}
+.modal{width:420px;border-radius:12px;padding:18px}
+
+/* Charts grid */
+.charts-grid{display:flex;flex-direction:column;gap:12px}
+.chart-card{padding:12px}
+
+.install-banner{position:fixed;left:20;bottom:80}
+
+/* Controls */
+.sheet-controls input{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+.sheet-controls select{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+

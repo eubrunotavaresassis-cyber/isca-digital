@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  server-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install server deps
+        run: npm ci
+      - name: Run unit tests
+        env:
+          NODE_ENV: test
+        run: npm run test:unit
+  client-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    needs: server-tests
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install client deps
+        run: npm ci
+      - name: Start frontend dev server
+        run: |
+          nohup npm run dev &
+          n=0
+          until curl -sSf http://localhost:5173 > /dev/null || [ $n -ge 30 ]; do
+            n=$((n+1))
+            echo "Waiting for frontend ($n)"
+            sleep 1
+          done
+      - name: Run frontend Puppeteer tests
+        env:
+          FRONTEND_URL: http://localhost:5173
+        run: node test_frontend.js

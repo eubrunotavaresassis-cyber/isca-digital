@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "client/package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+  ],
+  "env": {
+    "API_URL": "https://your-api.example.com",
+    "FRONTEND_ORIGIN": "https://your-frontend-url.vercel.app",
+    "JWT_SECRET": "@jwt_secret",
+    "SUPABASE_URL": "@supabase_url",
+    "SUPABASE_KEY": "@supabase_key"
+  },
+  "github": {
+    "silent": false
+  }
+}
